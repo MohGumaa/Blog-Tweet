@@ -41,7 +41,10 @@ urlpatterns = [
         name="password_reset_complete"),
     path('profile/', user_views.profile, name="profile"),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler403 = 'blog.views.error_403'
 handler404 = 'blog.views.error_404'
